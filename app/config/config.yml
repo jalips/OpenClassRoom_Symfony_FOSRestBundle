@@ -73,6 +73,7 @@ sensio_framework_extra:
 
 # FOSRest Bundle Config
 fos_rest:
+    param_fetcher_listener: force
     body_converter:
         enabled: true
     view:
