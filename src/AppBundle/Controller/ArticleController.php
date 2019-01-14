@@ -49,6 +49,12 @@ class ArticleController extends FOSRestController
      */
     public function createAction(Article $article)
     {
+        $errors = $this->get('validator')->validate($article);
+
+        if (count($errors)) {
+            return $this->view($errors, Response::HTTP_BAD_REQUEST);
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $em->persist($article);
