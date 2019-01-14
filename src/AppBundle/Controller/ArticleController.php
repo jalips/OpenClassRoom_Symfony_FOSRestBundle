@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Validator\ConstraintViolationList;
 
 class ArticleController extends FOSRestController
 {
@@ -47,12 +48,10 @@ class ArticleController extends FOSRestController
      * @Rest\View(StatusCode = 201)
      * @ParamConverter("article", converter="fos_rest.request_body")
      */
-    public function createAction(Article $article)
+    public function createAction(Article $article, ConstraintViolationList $violations)
     {
-        $errors = $this->get('validator')->validate($article);
-
-        if (count($errors)) {
-            return $this->view($errors, Response::HTTP_BAD_REQUEST);
+        if (count($violations)) {
+            return $this->view($violations, Response::HTTP_BAD_REQUEST);
         }
 
         $em = $this->getDoctrine()->getManager();
