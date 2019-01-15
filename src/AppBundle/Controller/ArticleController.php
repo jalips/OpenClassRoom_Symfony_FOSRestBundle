@@ -13,6 +13,9 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Validator\ConstraintViolationList;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Nelmio\ApiDocBundle\Annotation\Security;
+use Swagger\Annotations as SWG;
 
 class ArticleController extends FOSRestController
 {
@@ -23,6 +26,7 @@ class ArticleController extends FOSRestController
      *     requirements = {"id"="\d+"}
      * )
      * @View
+     *
      */
     public function showAction(Article $article)
     {
@@ -32,6 +36,7 @@ class ArticleController extends FOSRestController
     /**
      * @Rest\Get("/articles", name="app_article_list")
      * @View
+     *
      */
     public function listAction()
     {

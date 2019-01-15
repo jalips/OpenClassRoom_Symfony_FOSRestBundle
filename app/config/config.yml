@@ -9,6 +9,8 @@ parameters:
     locale: en
 
 framework:
+    templating:
+        engines: ['twig']
     #esi: ~
     #translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
@@ -99,3 +101,4 @@ csa_guzzle:
         weather:
             config:
                 base_uri: http://api.openweathermap.org
+nelmio_api_doc: ~
