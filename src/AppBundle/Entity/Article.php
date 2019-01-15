@@ -4,10 +4,34 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  * @ORM\Entity
  * @ORM\Table()
+ *
+ * @Hateoas\Relation(
+ *      "self",
+ *      href = @Hateoas\Route(
+ *          "app_article_show",
+ *          parameters = { "id" = "expr(object.getId())" },
+ *          absolute = true
+ *      )
+ * )
+ *
+ * @Hateoas\Relation(
+ *      "create",
+ *      href = @Hateoas\Route(
+ *          "app_article_create",
+ *          absolute = true
+ *      )
+ * )
+ *
+ * @Hateoas\Relation(
+ *     "author",
+ *     embedded = @Hateoas\Embedded("expr(object.getAuthor())")
+ * )
+ *
  */
 class Article
 {
