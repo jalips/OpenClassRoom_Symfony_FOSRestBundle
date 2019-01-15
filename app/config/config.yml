@@ -94,3 +94,8 @@ fos_rest:
             media_type: # Accept header
                 enabled: true
                 regex: '/(v|version)=(?P<version>[0-9\.]+)/'
+csa_guzzle:
+    clients:
+        weather:
+            config:
+                base_uri: http://api.openweathermap.org

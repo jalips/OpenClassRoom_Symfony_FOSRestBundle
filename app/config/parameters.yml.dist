@@ -17,3 +17,6 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    # weather_api_key
+    weather_api_key: 04f3ecaa61866ac151eee1a4af5b22c1
