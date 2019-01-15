@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Hateoas\Configuration\Annotation as Hateoas;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * @ORM\Entity
@@ -45,12 +46,16 @@ class Article
     /**
      * @ORM\Column(type="string", length=100)
      *
+     * @Serializer\Since("1.0")
+     *
      * @Assert\NotBlank
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     *
+     * @Serializer\Since("1.0")
      *
      * @Assert\NotBlank
      */
@@ -60,6 +65,14 @@ class Article
      * @ORM\ManyToOne(targetEntity="Author", cascade={"all"}, fetch="EAGER")
      */
     private $author;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     *
+     * @Serializer\Since("2.0")
+     *
+     */
+    private $shortDescription;
 
     public function getId()
     {
@@ -99,4 +112,22 @@ class Article
     {
         $this->author = $author;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getShortDescription()
+    {
+        return $this->shortDescription;
+    }
+
+    /**
+     * @param mixed $shortDescription
+     */
+    public function setShortDescription($shortDescription)
+    {
+        $this->shortDescription = $shortDescription;
+    }
+
+
 }
